@@ -12,13 +12,14 @@ namespace PreSpaceTycon
 		public StarSystem generateStarSystem(string name, int bs, int bi, int bp)
 		{
 			StarSystem ret = new StarSystem();
+			ret.Id = IdGenerator.getNextId ();
 			ret.Name=name;
 
-			int points=4+Game.get().rng.nextInt(5);
+			int points=4+DefaultRNG.nextInt(5);
 			ret.Size=points;
-			ret.Population = points*2+Game.get().rng.nextInt(2);
-			ret.X=Game.get().rng.nextInt(50);
-			ret.Y=Game.get().rng.nextInt(50);
+			ret.Population = points*2+DefaultRNG.nextInt(2);
+			ret.X=DefaultRNG.nextInt(50);
+			ret.Y=DefaultRNG.nextInt(50);
 			while(points>0)
 			{
 				Distribution d = new Distribution(Distribution.createPercentageMap(new int[]{bs,bi,bp}));
@@ -61,12 +62,12 @@ namespace PreSpaceTycon
 				points--;
 
 			}
-			ret.Leisure=2*ret.Services-2*ret.Industry+3*ret.Primary+Game.get().rng.nextInt(5);
-			ret.Culture=3*ret.Services-ret.Industry+Game.get().rng.nextInt(5);
-			ret.Tourism=3*ret.Primary+ret.Leisure+ret.Culture-5*ret.Industry+Game.get().rng.nextInt(10);
-			ret.Tolerance=Game.get().rng.nextInt(5)+ret.Culture;
-			ret.Inhabitability=Game.get().rng.nextInt(10)+ret.Leisure*3-2*ret.Industry;
-			ret.Gdp = Game.get().rng.nextInt (5) + 3 * ret.Services + ret.Industry - ret.Primary;
+			ret.Leisure=2*ret.Services-2*ret.Industry+3*ret.Primary+DefaultRNG.nextInt(5);
+			ret.Culture=3*ret.Services-ret.Industry+DefaultRNG.nextInt(5);
+			ret.Tourism=3*ret.Primary+ret.Leisure+ret.Culture-5*ret.Industry+DefaultRNG.nextInt(10);
+			ret.Tolerance=DefaultRNG.nextInt(5)+ret.Culture;
+			ret.Inhabitability=DefaultRNG.nextInt(10)+ret.Leisure*3-2*ret.Industry;
+			ret.Gdp = DefaultRNG.nextInt (5) + 3 * ret.Services + ret.Industry - ret.Primary;
 			if(ret.Leisure<0)
 				ret.Leisure=0;
 			if(ret.Culture<0)
@@ -82,5 +83,8 @@ namespace PreSpaceTycon
 			return ret;
 		}
 	}
+
+
+
 }
 

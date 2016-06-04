@@ -6,7 +6,10 @@ namespace PreSpaceTycon
 	{
 		public static void Main (string[] args)
 		{
-			Console.WriteLine ("Hello World!");
+			UniverseGenerator gen = new UniverseGenerator ();
+			for (int i = 0; i < 20; i++) {
+				Console.WriteLine(gen.generateStarSystem ("system " + i, 20, 45, 30));
+			}
 		}
 	}
 }

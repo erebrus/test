@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace PreSpaceTycon
 {
 	public class Distribution
 	{
 
-		private Hashtable percentages;
+		private Dictionary<Int32,Int32> percentages;
 		private int total;
 
-		public Distribution(Hashtable percentages)
+		public Distribution(Dictionary<Int32,Int32> percentages)
 		{
-			this.percentages=percentages;
+			setPercentages (percentages);
+
 		}
 
-		public void setPercentages(Hashtable percentages) {
+		public void setPercentages(Dictionary<Int32,Int32> percentages) {
 			this.percentages = percentages;
 			total=0;
-			foreach (DictionaryEntry  e in percentages)
+			foreach (KeyValuePair<Int32,Int32>  e in percentages)
 				total+=(int)e.Value;
 		}
 
@@ -27,17 +29,17 @@ namespace PreSpaceTycon
 			if(val==total)
 				val=total-1;
 			int sum=0;
-			foreach (DictionaryEntry  e in percentages)
+			foreach (KeyValuePair<Int32,Int32>  e in percentages)
 			{
-				sum+=(int)e.Value;
+				sum+=e.Value;
 				if(val<sum)
-					return (int)e.Key; 
+					return e.Key; 
 			}
 			throw new ArgumentException("total:"+total+" val:"+val);
 		}
-		public static Hashtable createPercentageMap(int []values)
+		public static Dictionary<Int32,Int32> createPercentageMap(int []values)
 		{
-			Hashtable map  = new Hashtable();
+			Dictionary<Int32,Int32> map  = new Dictionary<Int32,Int32>();
 			for(int i=0;i<values.Length;i++)
 			{
 				map[i]=values[i];

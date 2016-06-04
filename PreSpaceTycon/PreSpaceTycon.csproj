@@ -41,6 +41,8 @@
     <Compile Include="DefaultRNG.cs" />
     <Compile Include="Distribution.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="PassengerGenerator.cs" />
+    <Compile Include="IdGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
